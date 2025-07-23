@@ -452,7 +452,7 @@ fn on_enter_buffer(context: &mut CompileContext) {
 fn on_enter_block_quote(context: &mut CompileContext) {
     context.tight_stack.push(false);
     context.line_ending_if_needed();
-    context.push("<blockquote>");
+    context.push("<blockquote class=\"uk-blockquote\">");
 }
 
 /// Handle [`Enter`][Kind::Enter]:[`CodeIndented`][Name::CodeIndented].
