@@ -1,56 +1,6 @@
-use std::fs;
-use std::path::Path;
-
-fn main() -> Result<(), markdown::message::Message>{
-    // Input/output file paths
-    let input_path = "examples/docs/intro.md";
-    let output_path = "examples/public/intro.html";
-
-    // Create output directory if needed
-    let output_dir = Path::new(output_path).parent().unwrap();
-    fs::create_dir_all(output_dir).expect("Failed to create output directory");
-
-    // Read markdown file
-    let markdown = fs::read_to_string(input_path).expect("Failed to read input file");
-
-    // Build HTML from components
-    let full_html = format!(
-        r###"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>{}</head>
-        <body class="bg-background font-geist-sans text-foreground antialiased">
-          <div class="p-6 lg:p-10">
-            <div class="space-y-0.5">
-              <h2 class="text-2xl font-bold tracking-tight">Settings</h2>
-              <p class="text-muted-foreground">
-                Manage your account settings and set e-mail preferences.
-              </p>
-            </div>
-            <div class="border-border my-6 border-t"></div>
-            <div class="flex gap-x-12">
-              {}
-              <div class="w-5/6">
-                {}
-              </div>
-            </div>
-          </div>
-        </body>
-</html>"###,
-        get_html_head(),
-        get_navigation_sidebar(),
-        markdown::to_frankenui(&markdown)
-    );
-
-    // Write to output
-    fs::write(output_path, full_html).expect("Failed to write output file");
-
-    println!("✅ Generated: {output_path}");
-
-    Ok(())
-}
-
-fn get_html_head() -> &'static str {
-    r###"
+<head>
   <meta charset="UTF-8">
   <title>FrankMark</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,12 +42,18 @@ fn get_html_head() -> &'static str {
     htmlElement.classList.add(__FRANKEN__.font || "uk-font-sm");
     htmlElement.classList.add(__FRANKEN__.chart || "uk-chart-default");
     </script>
-"###
-}
-
-
-fn get_navigation_sidebar() -> &'static str {
-    r###"
+</head>
+        <body class="bg-background font-geist-sans text-foreground antialiased">
+          <div class="p-6 lg:p-10">
+            <div class="space-y-0.5">
+              <h2 class="text-2xl font-bold tracking-tight">Settings</h2>
+              <p class="text-muted-foreground">
+                Manage your account settings and set e-mail preferences.
+              </p>
+            </div>
+            <div class="border-border my-6 border-t"></div>
+            <div class="flex gap-x-12">
+              
               <aside class="w-1/6">
                 <ul
                   class="uk-nav uk-nav-secondary"
@@ -110,5 +66,24 @@ fn get_navigation_sidebar() -> &'static str {
                   <li><a href="#">Display</a></li>
                 </ul>
               </aside>
-"###
-}
+
+              <div class="w-5/6">
+                <h1 class="uk-h1">Hello from FrankMark</h1>
+<hr />
+<h1 class="uk-h2">List</h1>
+<ul class="uk-list uk-list-hyphen">
+<li>✅ Fast</li>
+<li>🎨 Pretty</li>
+<li>🦀 Rust-powered</li>
+</ul>
+<hr />
+<h1 class="uk-h2">Break</h1>
+<p>Line 1<br />
+Line 2</p>
+<h1 class="uk-h2">InlineCode</h1>
+<p>This is <code>inline code</code></p>
+              </div>
+            </div>
+          </div>
+        </body>
+</html>

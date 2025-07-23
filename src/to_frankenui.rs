@@ -656,9 +656,9 @@ fn on_enter_list(context: &mut CompileContext) {
 
     // Note: no `>`.
     context.push(if context.events[context.index].name == Name::ListOrdered {
-        "<ol class=\"uk-list uk-list-decimal\">"
+        "<ol class=\"uk-list uk-list-decimal\""
     } else {
-        "<ul class=\"uk-list uk-list-hyphen\">"
+        "<ul class=\"uk-list uk-list-hyphen\""
     });
     context.list_expect_first_marker = Some(true);
 }
