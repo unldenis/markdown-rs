@@ -548,7 +548,7 @@ fn on_enter_gfm_table(context: &mut CompileContext) {
     let align = gfm_table_align(context.events, context.index);
     context.gfm_table_align = Some(align);
     context.line_ending_if_needed();
-    context.push("<div class=\"uk-overflow-auto\"><table class=\"uk-table uk-table-striped uk-table-hover\">");
+    context.push("<div class=\"uk-overflow-auto\"><table class=\"uk-table uk-table-divider uk-table-responsive\">");
 }
 
 /// Handle [`Enter`][Kind::Enter]:[`GfmTableBody`][Name::GfmTableBody].
@@ -681,7 +681,7 @@ fn on_enter_paragraph(context: &mut CompileContext) {
 
     if !tight {
         context.line_ending_if_needed();
-        context.push("<p class=\"uk-paragraph mb-4\">");
+        context.push("<p class=\"uk-paragraph mt-4\">");
     }
 }
 
@@ -1234,6 +1234,9 @@ fn on_exit_heading_atx(context: &mut CompileContext) {
         .expect("`heading_atx_rank` must be set in headings");
 
     context.push("</h1>");
+    if rank == 1 || rank == 2 {
+        context.push("<hr class=\"uk-hr mb-6\"/>");
+    }
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`HeadingAtxSequence`][Name::HeadingAtxSequence].
@@ -1249,7 +1252,12 @@ fn on_exit_heading_atx_sequence(context: &mut CompileContext) {
         context.heading_atx_rank = Some(rank);
         context.push("<h1 class=\"uk-h");
         context.push(&rank.to_string());
-        context.push(" mb-6\">");
+        context.push(" mt-8");
+        if rank == 1 || rank == 2 {
+            context.push(" mb-4\">");
+        } else {
+            context.push(" mb-6\">");
+        }
     }
 }
 
@@ -1279,9 +1287,18 @@ fn on_exit_heading_setext_underline_sequence(context: &mut CompileContext) {
     context.line_ending_if_needed();
     context.push("<h1 class=\"uk-h");
     context.push(rank);
-    context.push(" mb-6\">");
-    context.push(&text);
-    context.push("</h1>");
+    context.push(" mt-8");
+    if rank == "1" || rank == "2" {
+        context.push(" mb-4\">");
+        context.push(&text);
+        context.push("</h1>");
+        context.push("<hr class=\"uk-hr mb-6\"/>");
+    } else {
+        context.push(" mb-6\">");
+        context.push(&text);
+        context.push("</h1>");
+    }
+
 }
 
 /// Handle [`Exit`][Kind::Exit]:{[`HtmlFlow`][Name::HtmlFlow],[`HtmlText`][Name::HtmlText]}.

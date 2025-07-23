@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FrankMark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/franken-ui@2.1.0-next.16/dist/css/core.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/franken-ui@2.1.0-next.16/dist/css/utilities.min.css"
+    />
+    <script
+    src="https://cdn.jsdelivr.net/npm/franken-ui@2.1.0-next.16/dist/js/core.iife.js"
+    type="module"
+    ></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/franken-ui@2.1.0-next.16/dist/js/icon.iife.js"
+    type="module"
+    ></script>
+
+    <script>
+    const htmlElement = document.documentElement;
+
+    const __FRANKEN__ = JSON.parse(localStorage.getItem("__FRANKEN__") || "{}");
+
+    if (
+        __FRANKEN__.mode === "dark" ||
+        (!__FRANKEN__.mode &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+        htmlElement.classList.add("dark");
+    } else {
+        htmlElement.classList.remove("dark");
+    }
+
+    htmlElement.classList.add(__FRANKEN__.theme || "uk-theme-neutral");
+    htmlElement.classList.add(__FRANKEN__.radii || "uk-radii-md");
+    htmlElement.classList.add(__FRANKEN__.shadows || "uk-shadows-sm");
+    htmlElement.classList.add(__FRANKEN__.font || "uk-font-sm");
+    htmlElement.classList.add(__FRANKEN__.chart || "uk-chart-default");
+    </script>
+</head>
+        <body class="bg-background font-geist-sans text-foreground antialiased">
+          <div class="p-6 lg:p-10">
+            <div class="space-y-0.5">
+              <h2 class="text-2xl font-bold tracking-tight">Settings</h2>
+              <p class="text-muted-foreground">
+                Manage your account settings and set e-mail preferences.
+              </p>
+            </div>
+            <div class="border-border my-6 border-t"></div>
+            <div class="flex gap-x-12">
+              
+              <aside class="w-1/6">
+                <ul
+                  class="uk-nav uk-nav-secondary"
+                  uk-switcher="connect: #component-nav; animation: uk-anmt-slide-left-sm"
+                >
+                  <li class="uk-active"><a href="#">Profile</a></li>
+                  <li><a href="#">Account</a></li>
+                  <li><a href="#">Appearance</a></li>
+                  <li><a href="#">Notifications</a></li>
+                  <li><a href="#">Display</a></li>
+                </ul>
+              </aside>
+
+              <div class="w-5/6">
+                <h1 class="uk-h1 mt-8 mb-4">Portal</h1><hr class="uk-hr mb-6"/>
+<p class="uk-paragraph mt-4">Portal is a Nostr-based authentication and payment SDK allowing applications to authenticate users and process payments through Nostr and Lightning Network.</p>
+<h1 class="uk-h2 mt-8 mb-4">Project Overview</h1><hr class="uk-hr mb-6"/>
+<p class="uk-paragraph mt-4">Portal provides a comprehensive solution for:</p>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2">Nostr-based user authentication</li>
+<li class="mt-2">Single and recurring payment processing</li>
+<li class="mt-2">Profile management and verification</li>
+<li class="mt-2">Cross-platform integration (Rust, TypeScript, and more)</li>
+</ul>
+<h1 class="uk-h2 mt-8 mb-4">Repository Structure</h1><hr class="uk-hr mb-6"/>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2"><code class="uk-codespan">/app</code> - API exposed to the app</li>
+<li class="mt-2"><code class="uk-codespan">/backend</code> - Example backend</li>
+<li class="mt-2"><code class="uk-codespan">/cli</code> - Command-line interface tool</li>
+<li class="mt-2"><code class="uk-codespan">/rates</code> - Bitcoin exchange rates from multiple sources</li>
+<li class="mt-2"><code class="uk-codespan">/react-native</code> - React Native bindings for the <code class="uk-codespan">app</code> crate</li>
+<li class="mt-2"><code class="uk-codespan">/rest</code> - SDK wrapper exposing a REST/websocket interface</li>
+<li class="mt-2"><code class="uk-codespan">/sdk</code> - Core SDK implementation</li>
+<li class="mt-2"><code class="uk-codespan">/rest/clients/ts</code> - TypeScript client for the REST API</li>
+</ul>
+<h1 class="uk-h2 mt-8 mb-4">Getting Started</h1><hr class="uk-hr mb-6"/>
+<h1 class="uk-h3 mt-8 mb-6">Prerequisites</h1>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2">Rust toolchain (latest stable)</li>
+<li class="mt-2">Node.js and npm (for TypeScript client)</li>
+</ul>
+<h1 class="uk-h3 mt-8 mb-6">Building the Core SDK</h1>
+<pre class="mb-4"><code class="language-bash">cargo build --release
+</code></pre>
+<h1 class="uk-h3 mt-8 mb-6">Running the SDK Daemon with Docker</h1>
+<p class="uk-paragraph mt-4">You can run the SDK Daemon using Docker. The image is published on Docker Hub as <code class="uk-codespan">getportal/sdk-daemon:latest</code>.</p>
+<h1 class="uk-h3 mt-8 mb-6">Run with Docker (pre-built image)</h1>
+<pre class="mb-4"><code class="language-bash">docker run --rm --name portal-sdk-daemon -d \
+  -p 3000:3000 \
+  -e NOSTR_KEY=&lt;your-nsec-here&gt; \
+  getportal/sdk-daemon:latest
+</code></pre>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2">The daemon will be available on port 3000.</li>
+<li class="mt-2">The default auth token is 'remember-to-change-this'</li>
+<li class="mt-2">You can override environment variables as needed (see below).</li>
+</ul>
+<h1 class="uk-h3 mt-8 mb-6">Environment Variables</h1>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2"><code class="uk-codespan">AUTH_TOKEN</code>: Authentication token for API access</li>
+<li class="mt-2"><code class="uk-codespan">NOSTR_KEY</code>: Your Nostr private key in hex format</li>
+<li class="mt-2"><code class="uk-codespan">NWC_URL</code>: (Optional) Nostr Wallet Connect URL</li>
+<li class="mt-2"><code class="uk-codespan">NOSTR_SUBKEY_PROOF</code>: (Optional) Nostr subkey proof</li>
+<li class="mt-2"><code class="uk-codespan">NOSTR_RELAYS</code>: (Optional) Comma-separated list of relay URLs</li>
+</ul>
+<h1 class="uk-h2 mt-8 mb-4">Using the TypeScript Client</h1><hr class="uk-hr mb-6"/>
+<h1 class="uk-h3 mt-8 mb-6">Installation</h1>
+<pre class="mb-4"><code class="language-bash">npm install portal-sdk
+</code></pre>
+<h1 class="uk-h3 mt-8 mb-6">Basic Usage</h1>
+<pre class="mb-4"><code class="language-typescript">import { PortalClient } from 'portal-sdk';
+
+// Initialize client
+const client = new PortalClient({
+  serverUrl: 'ws://localhost:3000/ws'
+});
+
+// Authenticate
+await client.connect('your-auth-token');
+
+// Generate authentication URL
+const { url, stream_id } = await client.getKeyHandshakeUrl();
+
+// Request payment
+const paymentResult = await client.requestSinglePayment({
+  main_key: 'user-pubkey',
+  subkeys: [],
+  payment_request: {
+    description: 'Product purchase',
+    amount: 1000,
+    currency: 'Millisats'
+  }
+});
+
+// Close connection when done
+client.disconnect();
+</code></pre>
+<h1 class="uk-h2 mt-8 mb-4">Features</h1><hr class="uk-hr mb-6"/>
+<h1 class="uk-h3 mt-8 mb-6">Authentication</h1>
+<p class="uk-paragraph mt-4">Secure user authentication using Nostr protocol, supporting both main keys and delegated subkeys.</p>
+<h1 class="uk-h3 mt-8 mb-6">Payment Processing</h1>
+<ul class="uk-list uk-list-hyphen mb-4">
+<li class="mt-2"><strong class="font-bold">Single Payments</strong>: One-time payments via Lightning Network</li>
+<li class="mt-2"><strong class="font-bold">Recurring Payments</strong>: Subscription-based payments with customizable recurrence patterns</li>
+<li class="mt-2"><strong class="font-bold">Payment Status Tracking</strong>: Real-time updates on payment status</li>
+</ul>
+<h1 class="uk-h3 mt-8 mb-6">Profile Management</h1>
+<p class="uk-paragraph mt-4">Fetch and verify user profiles through Nostr's social graph.</p>
+<h1 class="uk-h2 mt-8 mb-4">API Documentation</h1><hr class="uk-hr mb-6"/>
+<p class="uk-paragraph mt-4">See the <code class="uk-codespan">/rest/README.md</code> file for detailed API documentation.</p>
+<h1 class="uk-h2 mt-8 mb-4">License</h1><hr class="uk-hr mb-6"/>
+<p class="uk-paragraph mt-4">This project is licensed under the MIT License, except for the app library.</p>
+              </div>
+            </div>
+          </div>
+        </body>
+</html>

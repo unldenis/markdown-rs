@@ -36,7 +36,7 @@ This is **bold** text
 
 ## Table
 
-| A | B |
+| First | Second |
 |---|---|
 | 1 | 2 |
 

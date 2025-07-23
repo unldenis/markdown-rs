@@ -3,11 +3,14 @@ use std::path::Path;
 
 fn main() -> Result<(), markdown::message::Message>{
     // Input/output file paths
-    let input_path = "examples/docs/intro.md";
-    let output_path = "examples/public/intro.html";
+
+    let name = "portal";
+
+    let input_path = format!("examples/docs/{name}.md");
+    let output_path = format!("examples/public/{name}.html");
 
     // Create output directory if needed
-    let output_dir = Path::new(output_path).parent().unwrap();
+    let output_dir = Path::new(&output_path).parent().unwrap();
     fs::create_dir_all(output_dir).expect("Failed to create output directory");
 
     // Read markdown file
@@ -42,7 +45,7 @@ fn main() -> Result<(), markdown::message::Message>{
     );
 
     // Write to output
-    fs::write(output_path, full_html).expect("Failed to write output file");
+    fs::write(output_path.clone(), full_html).expect("Failed to write output file");
 
     println!("✅ Generated: {output_path}");
 
