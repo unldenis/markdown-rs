@@ -681,7 +681,7 @@ fn on_enter_paragraph(context: &mut CompileContext) {
 
     if !tight {
         context.line_ending_if_needed();
-        context.push("<p>");
+        context.push("<p class=\"uk-paragraph\">");
     }
 }
 
