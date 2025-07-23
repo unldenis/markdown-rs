@@ -1233,9 +1233,7 @@ fn on_exit_heading_atx(context: &mut CompileContext) {
         .take()
         .expect("`heading_atx_rank` must be set in headings");
 
-    context.push("</h");
-    context.push(&rank.to_string());
-    context.push(">");
+    context.push("</h1>");
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`HeadingAtxSequence`][Name::HeadingAtxSequence].
@@ -1249,9 +1247,9 @@ fn on_exit_heading_atx_sequence(context: &mut CompileContext) {
         .len();
         context.line_ending_if_needed();
         context.heading_atx_rank = Some(rank);
-        context.push("<h");
+        context.push("<h1 class=\"uk-h");
         context.push(&rank.to_string());
-        context.push(">");
+        context.push("\">");
     }
 }
 
@@ -1279,13 +1277,11 @@ fn on_exit_heading_setext_underline_sequence(context: &mut CompileContext) {
     let rank = if head == b'-' { "2" } else { "1" };
 
     context.line_ending_if_needed();
-    context.push("<h");
+    context.push("<h1 class=\"uk-h");
     context.push(rank);
-    context.push(">");
+    context.push("\">");
     context.push(&text);
-    context.push("</h");
-    context.push(rank);
-    context.push(">");
+    context.push("</h1>");
 }
 
 /// Handle [`Exit`][Kind::Exit]:{[`HtmlFlow`][Name::HtmlFlow],[`HtmlText`][Name::HtmlText]}.
