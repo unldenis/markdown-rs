@@ -22,6 +22,10 @@ This is `inline code`
 
 This is *italic* text
 
+## Strikethrough
+
+This is ~~strikethrough~~ text
+
 ## Link
 
 [Link text](https://example.com "Title")

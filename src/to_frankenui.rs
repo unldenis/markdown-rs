@@ -539,7 +539,7 @@ fn on_enter_gfm_footnote_call(context: &mut CompileContext) {
 /// Handle [`Enter`][Kind::Enter]:[`GfmStrikethrough`][Name::GfmStrikethrough].
 fn on_enter_gfm_strikethrough(context: &mut CompileContext) {
     if !context.image_alt_inside {
-        context.push("<del>");
+        context.push("<del class=\"line-through\">");
     }
 }
 
