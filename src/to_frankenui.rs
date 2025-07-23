@@ -479,7 +479,7 @@ fn on_enter_raw_flow(context: &mut CompileContext) {
 fn on_enter_raw_text(context: &mut CompileContext) {
     context.raw_text_inside = true;
     if !context.image_alt_inside {
-        context.push("<code");
+        context.push("<code class=\"uk-codespan\"");
         if context.events[context.index].name == Name::MathText {
             context.push(" class=\"language-math math-inline\"");
         }
