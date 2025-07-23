@@ -40,5 +40,8 @@ fn main() -> Result<(), markdown::message::Message> {
         )?
     );
 
+    // Turn markdown into FrankenUI.
+    println!("{}", markdown::to_frankenui("## Hello, *FrankenUI*!"));
+
     Ok(())
 }

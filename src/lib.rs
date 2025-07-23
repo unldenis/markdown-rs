@@ -41,6 +41,7 @@ mod parser;
 mod resolve;
 mod state;
 mod subtokenize;
+mod to_frankenui;
 mod to_html;
 mod to_mdast;
 mod tokenizer;
@@ -161,4 +162,19 @@ pub fn to_mdast(value: &str, options: &ParseOptions) -> Result<mdast::Node, mess
     let (events, parse_state) = parser::parse(value, options)?;
     let node = to_mdast::compile(&events, parse_state.bytes)?;
     Ok(node)
+}
+
+/// Turn markdown into FrankenUI.
+pub fn to_frankenui(value: &str) -> String {
+    to_frankenui_with_options(value, &Options::default()).unwrap()
+}
+
+/// Turn markdown into FrankenUI, with configuration.
+pub fn to_frankenui_with_options(value: &str, options: &Options) -> Result<String, message::Message> {
+    let (events, parse_state) = parser::parse(value, &options.parse)?;
+    Ok(to_frankenui::compile(
+        &events,
+        parse_state.bytes,
+        &options.compile,
+    ))
 }
