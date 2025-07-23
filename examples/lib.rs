@@ -38,7 +38,7 @@ fn main() -> Result<(), markdown::message::Message>{
 </html>"###,
         get_html_head(),
         get_navigation_sidebar(),
-        markdown::to_frankenui(&markdown)
+        markdown::to_frankenui_with_options(&markdown, &markdown::Options::gfm()).unwrap()
     );
 
     // Write to output

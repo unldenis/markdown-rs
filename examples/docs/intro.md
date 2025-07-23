@@ -11,7 +11,6 @@
 --- 
 
 ## Break
-
 Line 1\
 Line 2
 
@@ -31,6 +30,11 @@ This is *italic* text
 
 This is **bold** text
 
+## Table
+
+| A | B |
+|---|---|
+| 1 | 2 |
 
 ## Image
 

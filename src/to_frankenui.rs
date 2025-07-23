@@ -548,7 +548,7 @@ fn on_enter_gfm_table(context: &mut CompileContext) {
     let align = gfm_table_align(context.events, context.index);
     context.gfm_table_align = Some(align);
     context.line_ending_if_needed();
-    context.push("<table>");
+    context.push("<div class=\"uk-overflow-auto\"><table class=\"uk-table uk-table-striped uk-table-hover\">");
 }
 
 /// Handle [`Enter`][Kind::Enter]:[`GfmTableBody`][Name::GfmTableBody].
@@ -1160,7 +1160,7 @@ fn on_exit_gfm_strikethrough(context: &mut CompileContext) {
 fn on_exit_gfm_table(context: &mut CompileContext) {
     context.gfm_table_align = None;
     context.line_ending_if_needed();
-    context.push("</table>");
+    context.push("</table></div>");
 }
 
 /// Handle [`Exit`][Kind::Exit]:[`GfmTableBody`][Name::GfmTableBody].
