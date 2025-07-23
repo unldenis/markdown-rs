@@ -702,7 +702,7 @@ fn on_enter_resource_destination_string(context: &mut CompileContext) {
 /// Handle [`Enter`][Kind::Enter]:[`Strong`][Name::Strong].
 fn on_enter_strong(context: &mut CompileContext) {
     if !context.image_alt_inside {
-        context.push("<strong>");
+        context.push("<strong class=\"font-bold\">");
     }
 }
 

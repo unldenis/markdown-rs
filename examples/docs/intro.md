@@ -27,6 +27,10 @@ This is *italic* text
 
 [Link text](https://example.com "Title")
 
+## Strong
+
+This is **bold** text
+
 
 ## Image
 
