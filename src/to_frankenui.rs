@@ -1093,7 +1093,7 @@ fn on_exit_gfm_footnote_call(context: &mut CompileContext) {
         return;
     }
 
-    context.push("<sup><a href=\"#");
+    context.push("<sup><a class=\"uk-link\" href=\"#");
     if let Some(ref value) = context.options.gfm_footnote_clobber_prefix {
         context.push(&encode(value, context.encode_html));
     } else {
@@ -1443,7 +1443,7 @@ fn on_exit_media(context: &mut CompileContext) {
         if media.image {
             context.push("<img src=\"");
         } else {
-            context.push("<a href=\"");
+            context.push("<a class=\"uk-link\" href=\"");
         }
 
         let destination = if let Some(index) = definition_index {
@@ -1640,7 +1640,7 @@ fn generate_footnote_item(context: &mut CompileContext, index: usize) {
         if reference_index != 0 {
             backreferences.push(' ');
         }
-        backreferences.push_str("<a href=\"#");
+        backreferences.push_str("<a class=\"uk-link\" href=\"#");
         if let Some(ref value) = context.options.gfm_footnote_clobber_prefix {
             backreferences.push_str(&encode(value, context.encode_html));
         } else {
@@ -1722,7 +1722,7 @@ fn generate_autolink(
     }
 
     if !context.image_alt_inside && (!is_in_link || !is_gfm_literal) {
-        context.push("<a href=\"");
+        context.push("<a class=\"uk-link\" href=\"");
         let url = if let Some(protocol) = protocol {
             format!("{}{}", protocol, value)
         } else {
