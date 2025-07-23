@@ -13,6 +13,18 @@
 
 CommonMark compliant markdown parser in Rust with ASTs and extensions.
 
+> **Note**: This is a fork of [markdown-rs](https://github.com/wooorm/markdown-rs) with FrankenUI support. For the original project, see the [upstream repository](https://github.com/wooorm/markdown-rs).
+
+## 🚀 FrankenUI Fork
+
+This is a fork of `markdown-rs` that adds support for [FrankenUI](https://franken-ui.dev/) CSS framework. The fork includes a `to_frankenui` module that generates HTML with FrankenUI classes and styling, designed specifically for use with [frankmark](https://github.com/your-username/frankmark) - a documentation generator similar to mdbook.
+
+### What's Different
+
+- **`to_frankenui`**: Generates HTML with FrankenUI CSS classes for styled documentation
+- **Enhanced styling**: Blockquotes, tables, lists, headings, and other elements include FrankenUI utility classes
+- **Documentation-focused**: Optimized for generating beautiful documentation sites
+
 ## Feature highlights
 
 * [x] **[compliant][commonmark]**
@@ -63,6 +75,10 @@ This Rust crate has a sibling project in JavaScript:
 
 P.S. if you want to *compile* MDX,
 use [`mdxjs-rs`][mdxjs-rs].
+
+### About This Fork
+
+This fork extends the original `markdown-rs` with FrankenUI support for documentation generation. It maintains full compatibility with the original API while adding the `to_frankenui` module for styled HTML output. The fork is designed to work seamlessly with documentation generators like [frankmark](https://github.com/your-username/frankmark).
 
 ## Questions
 
