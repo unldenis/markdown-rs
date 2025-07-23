@@ -1554,7 +1554,7 @@ fn on_exit_strong(context: &mut CompileContext) {
 /// Handle [`Exit`][Kind::Exit]:[`ThematicBreak`][Name::ThematicBreak].
 fn on_exit_thematic_break(context: &mut CompileContext) {
     context.line_ending_if_needed();
-    context.push("<hr />");
+    context.push("<hr class=\"uk-hr\"/>");
 }
 
 /// Generate a footnote section.
