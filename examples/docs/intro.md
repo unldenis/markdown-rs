@@ -18,3 +18,7 @@ Line 2
 ## InlineCode
 
 This is `inline code`
+
+## Emphasis
+
+This is *italic* text

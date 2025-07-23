@@ -510,7 +510,7 @@ fn on_enter_definition_destination_string(context: &mut CompileContext) {
 /// Handle [`Enter`][Kind::Enter]:[`Emphasis`][Name::Emphasis].
 fn on_enter_emphasis(context: &mut CompileContext) {
     if !context.image_alt_inside {
-        context.push("<em>");
+        context.push("<em class=\"italic\">");
     }
 }
 
